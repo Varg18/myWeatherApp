@@ -84,7 +84,6 @@ export default class BookmarkCard extends Vue {
         return 'Thunderstorm'
 
       default:
-        // what the fuck
         return 'Clouds'
     }
   }
