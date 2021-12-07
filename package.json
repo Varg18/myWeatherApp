@@ -1,0 +1,42 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/pwa": "^3.3.5",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+    "@vue/babel-preset-jsx": "^1.2.4",
+    "core-js": "^3.15.1",
+    "lodash": "^4.17.21",
+    "luxon": "^2.1.1",
+    "nuxt": "^2.15.7",
+    "vue-autosuggest": "^2.2.0",
+    "vue-class-component": "^7.2.6",
+    "vue-property-decorator": "^9.1.2",
+    "vuex-module-decorators": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/plugin-proposal-decorators": "^7.16.4",
+    "@nuxt/types": "^2.15.7",
+    "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/svg": "^0.3.0",
+    "@nuxtjs/tailwindcss": "^4.2.0",
+    "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.177",
+    "@types/luxon": "^2.0.7",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "postcss": "^8.3.5",
+    "push-dir": "^0.4.1",
+    "sass": "^1.44.0",
+    "sass-loader": "10.1.1",
+    "vue-svg-loader": "^0.16.0"
+  }
+}
