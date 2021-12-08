@@ -6,6 +6,7 @@
       :suggestions="suggestions"
       :input-props="autosuggestProps"
       :should-render-suggestions="shouldRenderSuggestions"
+      :limit="5"
       @selected="onItemSelected"
     >
       <template slot-scope="{suggestion}">
