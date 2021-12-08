@@ -118,7 +118,7 @@ export default class WeatherPage extends Vue {
   get weatherPressure() {
     if (this.weatherResponse === null) return null
     // @ts-ignore
-    return this.weatherResponse.main.pressure
+    return (this.weatherResponse.main.pressure / 1.33).toFixed()
   }
 
   get weatherSunsetTime() {
@@ -130,8 +130,6 @@ export default class WeatherPage extends Vue {
 
     let date = DateTime
       .fromSeconds(sunsetSecondsUTC)
-      .plus({second: timezoneOffsetSeconds})
-
     return date
   }
 
