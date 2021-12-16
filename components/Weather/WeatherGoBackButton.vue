@@ -1,9 +1,9 @@
 <template>
-  <nuxt-link class="weather-go-back-button flex p-4 text-text hover:text-white" to="/">
+  <nuxt-link class="back-img" to="/">
+    <!--<svg><use xlink:href="#Back"></use></svg>-->
+     <img width="24px" height="24px" alt="back" src="~assets/svg/Back.svg"/>
 
-    <img width="24px" height="24px" alt="back" src="~assets/svg/Back.svg"/>
-
-    <span class="hidden md:inline ml-2 leading-tight">
+    <span class="back-text">
       Назад
     </span>
 

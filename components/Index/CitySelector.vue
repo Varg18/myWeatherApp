@@ -1,5 +1,5 @@
 <template>
-  <div class="city-selector w-full bg-surface placeholder-text text-white flex items-center rounded-sm">
+  <div class="city-selector ">
 
     <vue-autosuggest
       v-model="query"

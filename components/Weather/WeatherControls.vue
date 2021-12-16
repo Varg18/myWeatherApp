@@ -1,5 +1,5 @@
 <template>
-  <div class="weather-controls bg-transparent flex p-1">
+  <div class="weather-controls">
     <weather-go-back-button/>
 
     <!-- Spacer -->

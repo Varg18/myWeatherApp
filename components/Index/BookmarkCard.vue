@@ -1,19 +1,19 @@
 <template>
-  <nuxt-link :to="`/city/${city}`" class="bookmark-card bg-cards rounded-md p-6 flex flex-col">
-    <div class="text-white text-center capitalize text-sm">
+  <nuxt-link :to="`/city/${city}`" class="bookmark-card">
+    <p class="city">
       {{ city }}
-    </div>
-    <div class="h-32">
+    </p>
+    <div class="cityInfo">
 
-      <div class="flex h-full w-full items-center justify-center" v-if="loading">
+      <div class="spinner" v-if="loading">
         <spinner/>
       </div>
       <template v-else>
 
-        <div class="mt-4 flex justify-center flex-col items-center">
-          <div class="text-white text-4xl font-semibold">
+        <div class="cardWeatherTemp">
+          <span class="weatherTempCard">
             {{ weatherTemp }}&deg;
-          </div>
+          </span>
           <div>
             <weather-icon width="92px" height="92px" :type="icon"/>
           </div>
@@ -84,6 +84,7 @@ export default class BookmarkCard extends Vue {
         return 'Thunderstorm'
 
       default:
+        // what the fuck
         return 'Clouds'
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="header h-16 bg-transparent md:bg-surface flex items-center pl-6 ">
+  <div class="headerLogo">
     <header-logo />
   </div>
 </template>
@@ -17,7 +17,3 @@ export default class Header extends Vue {
 }
 </script>
 
-<style lang="sass" scoped>
-.header
-
-</style>

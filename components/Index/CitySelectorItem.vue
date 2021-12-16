@@ -1,5 +1,5 @@
 <template>
-  <a class="city-selector-item block w-full bg-suggestion hover:bg-suggestion-hover flex items-center pl-4 cursor-pointer">
+  <a class="city-selector-item">
     <div class="text-text">
       <span>{{ renderedSuggestion.prefix }}</span><span class="text-white">{{
         renderedSuggestion.highlight

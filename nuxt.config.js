@@ -60,8 +60,13 @@ export default {
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    meta:{
+      title: 'Weather'
+    },
     manifest: {
-      lang: 'en'
+      name: 'Weather',
+      short_name: 'Weather',
+      lang: 'ru'
     }
   },
 

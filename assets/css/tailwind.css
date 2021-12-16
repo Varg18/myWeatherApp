@@ -1,3 +1,149 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*index.vue*/
+.index{
+  @apply bg-primary;
+}
+.index-container{
+  @apply w-screen max-w-lg  px-6 flex items-center flex-col  mx-auto md:mt-20;
+}
+.index-city-selector{
+  @apply w-full;
+}
+.index-tip{
+  @apply mt-6;
+}
+.hint{
+  @apply text-text text-center mt-3;
+}
+.hintIzhevsk{
+  @apply text-white border-white border-b border-dashed;
+}
+.index-bookmarks-tip{
+  @apply mt-24;
+}
+.hint2{
+  @apply text-text text-center;
+}
+.index-bookmark-cards{
+  @apply mt-8 md:mt-14 w-full max-w-screen-2xl mx-auto px-10;
+}
+/*------------------------------------------------------------*/
+
+/*Header.vue*/
+.headerLogo{
+  @apply h-16 bg-transparent md:bg-surface flex items-center pl-6;
+}
+/*----------------------------------------------------------------*/
+
+/*_name.vue*/
+.weather{
+  @apply flex flex-col;
+}
+.weather-container{
+  @apply w-screen max-w-lg px-6 flex items-center flex-col mx-auto flex-grow justify-center pb-16;
+}
+.header{
+  @apply hidden md:flex;
+}
+.error-msg{
+  @apply text-white;
+}
+.cityName{
+  @apply text-2xl md:text-6xl text-white font-medium text-center capitalize;
+}
+.loading{
+  @apply mt-4;
+}
+.weatherDesc{
+  @apply text-white mt-4;
+}
+.temp{
+  @apply mt-4 md:mt-8 flex justify-center flex-col md:flex-row items-center;
+}
+.weatherTemp{
+  @apply text-white text-9xl font-semibold;
+}
+.pressure{
+  @apply mt-10 flex justify-center items-center;
+}
+.weatherPressure{
+  @apply text-white ml-2;
+}
+.sunset{
+  @apply mt-8 flex justify-center items-center;
+}
+.sunsetTime{
+  @apply text-text;
+}
+/*------------------------------------------------*/
+
+/*BookmarkCard.vue*/
+.bookmark-card{
+  @apply bg-cards rounded-md p-6 flex flex-col;
+}
+.city{
+  @apply text-white text-center capitalize text-sm;
+}
+.cityInfo{
+  @apply h-32;
+}
+.spinner{
+  @apply flex h-full w-full items-center justify-center;
+}
+.cardWeatherTemp{
+  @apply mt-4 flex justify-center flex-col items-center;
+}
+.weatherTempCard{
+  @apply text-white text-4xl font-semibold;
+}
+/*--------------------------------------------------------------*/
+
+/*CitySelector.vue*/
+.city-selector{
+  @apply w-full bg-surface placeholder-text text-white flex items-center rounded-sm;
+}
+/*----------------------------------------------------------------*/
+
+/*CitySelectorItem.vue*/
+.city-selector-item{
+  @apply block w-full bg-suggestion hover:bg-suggestion-hover flex items-center pl-4 cursor-pointer;
+}
+/*-----------------------------------------------------------------*/
+
+/*HeaderLogo.vue*/
+.headerLogoImg{
+ @apply flex items-center block;
+}
+.logoName{
+  @apply text-base font-bold text-white leading-none ml-2;
+}
+/*-----------------------------------------------------------------*/
+
+/*WeatherAddBookmarkButton.vue*/
+.add-bookmark{
+ @apply p-4 cursor-pointer;
+}
+/*-----------------------------------------------------------------*/
+
+/*WeatherControls.vue*/
+.weather-controls{
+ @apply bg-transparent flex p-1;
+}
+/*-----------------------------------------------------------------*/
+
+/*WeatherGoBackButton.vue*/
+.back-img{
+  @apply flex p-4 text-text hover:text-white;
+}
+.back-text{
+ @apply hidden md:inline ml-2 leading-tight;
+}
+/*-----------------------------------------------------------------*/
+
+/*WeatherRemoveBookmarkButton.vue*/
+.remove-bookmark{
+ @apply p-4 cursor-pointer;
+}

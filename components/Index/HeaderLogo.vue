@@ -1,8 +1,8 @@
 <template>
-  <nuxt-link to="/" class="flex items-center block">
+  <nuxt-link to="/" class="headerLogoImg">
     <img width="30px" height="30px" alt="back" src="~assets/svg/Logo.svg"/>
-    <div class="text-base font-bold text-white leading-none ml-2">
+    <p class="logoName">
       WeatherCheck
-    </div>
+    </p>
   </nuxt-link>
 </template>

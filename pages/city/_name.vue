@@ -1,30 +1,31 @@
 <template>
-  <div class="weather flex flex-col">
-    <Header class="hidden md:flex"/>
-    <weather-controls
+  <div class="weather">
+    <Header class="header"/>
+    <weather-controls v-if="error"
+      @remove-bookmark="removeBookmark"
+    />
+    <weather-controls v-else
       :is-bookmarked="isBookmarked"
       @add-bookmark="addBookmark"
       @remove-bookmark="removeBookmark"
     />
+    <div class="weather-container">
 
-    <div
-      class="weather-container w-screen max-w-lg px-6 flex items-center flex-col mx-auto flex-grow justify-center pb-16">
-
-      <h1 class="text-2xl md:text-6xl text-white font-medium text-center capitalize">
+      <h1 class="cityName">
         {{ cityName }}
       </h1>
-
-      <div v-if="loading" class="mt-4">
+      <div v-if="loading" class="loading">
         <spinner/>
       </div>
+      <p v-else-if="error" class="error-msg">Ошибка получения данных! Пожалуйста, попробуйте позже</p>
       <template v-else>
 
-        <div class="text-white mt-4">
+        <p class="weatherDesc">
           {{ weatherDesc }}
-        </div>
+        </p>
 
-        <div class="mt-4 md:mt-8 flex justify-center flex-col md:flex-row items-center">
-          <div class="text-white text-9xl font-semibold">
+        <div class="temp">
+          <div class="weatherTemp ">
             {{ weatherTemp }}&deg;
           </div>
           <div>
@@ -32,19 +33,19 @@
           </div>
         </div>
 
-        <div class="mt-10 flex justify-center items-center">
+        <div class="pressure">
           <div>
             <img alt="barometer" src="~assets/svg/Barometer.svg" width="24px" height="24px"/>
           </div>
-          <div class="text-white ml-2">
+          <p class="weatherPressure">
             {{ weatherPressure }} мм рт. ст.
-          </div>
+          </p>
         </div>
 
-        <div class="mt-8 flex justify-center items-center">
-          <div class="text-text">
+        <div class="sunset ">
+          <p class="sunsetTime">
             Закат в {{ weatherSunsetTime.toFormat('HH:mm') }}
-          </div>
+          </p>
         </div>
       </template>
 
@@ -65,12 +66,20 @@ import WeatherControls from "~/components/Weather/WeatherControls.vue";
 import {bookmarksStore} from "~/utils/store-accessor";
 import {OPENWEATHER_API_KEY} from "~/utils/const";
 
-
+interface WeatherResponse{
+  main: {
+    temp:number,
+    pressure: number
+  }
+  weather: Array<any>
+  sys: any
+}
 
 @Component({
   components: {WeatherControls, WeatherIcon, Spinner, Header},
 })
 export default class WeatherPage extends Vue {
+  error: boolean = false;
 
   addBookmark() {
     bookmarksStore.addBookmark(this.cityName)
@@ -84,10 +93,10 @@ export default class WeatherPage extends Vue {
     return bookmarksStore.bookmarks.includes(this.cityName.toLocaleLowerCase())
   }
 
-  weatherResponse: object | null = null
+  weatherResponse: WeatherResponse | null = null
 
   get loading() {
-    return this.weatherResponse === null
+    return this.weatherResponse === null && !this.error
   }
 
   get cityName(): string {
@@ -97,43 +106,53 @@ export default class WeatherPage extends Vue {
   @Watch('cityName', {immediate: true})
   async updateWeather() {
     this.weatherResponse = null
-    let resp = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&APPID=${OPENWEATHER_API_KEY}&units=metric&lang=ru`
-    ).then(it => it.json())
-    this.weatherResponse = resp
+    this.error = false
+    try {
+      let resp = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${this.cityName}&APPID=${OPENWEATHER_API_KEY}&units=metric&lang=ru`
+      ).then(data =>{
+        if(data.status !== 200)
+          return Promise.reject()
+        return data
+      }).then(it => it.json())
+
+      this.weatherResponse = resp
+    }
+    catch(e){
+      this.error = true
+    }
   }
 
   get weatherDesc() {
     if (this.weatherResponse === null) return null
-    // @ts-ignore
+
     return _.capitalize(this.weatherResponse.weather[0].description)
   }
 
   get weatherTemp() {
     if (this.weatherResponse === null) return null
-    // @ts-ignore
+
     return Math.round(this.weatherResponse.main.temp)
   }
 
   get weatherPressure() {
     if (this.weatherResponse === null) return null
-    // @ts-ignore
+
     return (this.weatherResponse.main.pressure / 1.33).toFixed()
   }
 
   get weatherSunsetTime() {
     if (this.weatherResponse === null) return null
-    // @ts-ignore
+
     let sunsetSecondsUTC = this.weatherResponse.sys.sunset
-    // @ts-ignore
-    let timezoneOffsetSeconds = this.weatherResponse.timezone
+
 
     let date = DateTime
       .fromSeconds(sunsetSecondsUTC)
     return date
   }
 
-  get icon(): string {// @ts-ignore
+  get icon(): string {
     let id: number = this.weatherResponse!.weather[0].id
     switch (true) {
       case id === 800:
@@ -158,7 +177,6 @@ export default class WeatherPage extends Vue {
         return 'Thunderstorm'
 
       default:
-        // what the fuck
         return 'Clouds'
     }
   }

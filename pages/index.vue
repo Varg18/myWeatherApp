@@ -1,33 +1,33 @@
 <template>
-  <div class="index bg-primary">
+  <div class="index">
     <Header/>
-    <div class="index-container w-screen max-w-lg px-6 flex items-center flex-col mt-6 mx-auto md:mt-36">
+    <div class="index-container">
 
-      <div class="index-city-selector w-full">
+      <div class="index-city-selector">
         <city-selector/>
       </div>
 
       <template v-if="!hasBookmarks">
-        <div class="index-tip mt-6">
+        <div class="index-tip">
           <div class="index-tip__arrow">
             <img width="36px" height="24px" alt="arrow" src="~assets/svg/TooltipArrow.svg"/>
           </div>
-          <div class="text-text text-center mt-3">
+          <p class="hint">
             Начните вводить город, например,
-            <nuxt-link to="/city/Ижевск" class="text-white border-white border-b border-dashed">Ижевск</nuxt-link>
-          </div>
+            <nuxt-link to="/city/Ижевск" class="hintIzhevsk">Ижевск</nuxt-link>
+          </p>
         </div>
 
-        <div class="index-bookmarks-tip mt-24">
-          <div class="text-text text-center">
+        <div class="index-bookmarks-tip">
+          <p class="hint2">
             Используйте значок «закладки»,
             чтобы закрепить город на главной
-          </div>
+          </p>
           <img class="bookmark" alt="bookmark" src="~assets/svg/BookmarkOutlined.svg"/>
         </div>
       </template>
     </div>
-    <div class="index-bookmark-cards mt-8 md:mt-20 w-full max-w-screen-2xl mx-auto px-6" v-if="hasBookmarks">
+    <div class="index-bookmark-cards" v-if="hasBookmarks">
       <bookmark-card
         v-for="bookmark in bookmarks"
         :key="bookmark"
@@ -85,5 +85,13 @@ export default class App extends Vue {
 .index-bookmark-cards
   display: grid
   grid-gap: 2rem
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr))
+  grid-template-columns: repeat(3, minmax(270px, 1fr))
+
+@media screen and (max-width: 1223px)
+  .index-bookmark-cards
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr))
+
+@media screen and (max-width: 375px)
+  .index-bookmark-cards
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr))
 </style>
